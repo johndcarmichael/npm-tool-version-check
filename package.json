@@ -1,12 +1,9 @@
 {
-  "name": "typescript-npm-package-tpl",
-  "version": "1.0.0",
-  "description": "A set of files to get moving for a typescript npm package, remove all not required",
+  "name": "npm-tool-version-check",
+  "version": "0.0.3",
+  "description": "Check the current tool is on the right version and warn otherwise",
   "licence": "MIT",
   "main": "./build/index.js",
-  "bin": {
-    "openapi-nodegen": "./build/cli.js"
-  },
   "scripts": {
     "install:githooks": "cp ./githooks/* .git/hooks",
     "test": "npm run lint && npm run test:unit",
@@ -15,40 +12,37 @@
     "lint": "tslint --project tsconfig.json --fix",
     "lint:fix": "tslint --project tsconfig.json --fix",
     "build:tocs": "npx doctoc .",
-    "build": "rm -fR ./build && ttsc -p .",
+    "build": "rm -fR ./build && ttsc -p . --declaration --declarationDir build",
     "build:watch": "ttsc --watch -p .",
     "start": "node cli.js",
     "prepublishOnly": "npm run lint && npm run test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/johndcarmichael/openapi-nodegen-emailer.git"
+    "url": "https://github.com/johndcarmichael/npm-tool-version-check.git"
   },
   "keywords": [
-    "swagger",
-    "openapi",
-    "rest",
-    "TypeScript",
-    "es6",
-    "es7",
-    "es2015",
-    "node.js",
-    "codegen",
-    "generator"
+    "version"
   ],
   "dependencies": {
+    "colors": "^1.4.0",
+    "inquirer": "^7.1.0",
+    "semver": "^7.2.1",
+    "tslib": "^1.11.1"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.25",
-    "@types/node": "^13.9.0",
-    "@zerollup/ts-transform-paths": "^1.7.9",
-    "codecov": "^3.6.1",
+    "@types/inquirer": "^6.5.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
+    "@types/semver": "^7.1.0",
+    "@zerollup/ts-transform-paths": "^1.7.17",
+    "codecov": "^3.6.5",
     "eslint": "^6.8.0",
-    "hasha": "^5.1.0",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.2.0",
-    "tslint": "^5.20.1",
-    "ttypescript": "^1.5.8",
-    "typescript": "^3.7.4"
+    "hasha": "^5.2.0",
+    "jest": "^25.3.0",
+    "ts-jest": "^25.3.1",
+    "tslint": "^6.1.1",
+    "ttypescript": "^1.5.10",
+    "typescript": "^3.8.3"
   }
 }
