@@ -1,4 +1,4 @@
-# typescript-npm-package-tpl
+# npm-tool-version-check
 
 Publish a tool, but want to warn users when you publish a new version.
 
