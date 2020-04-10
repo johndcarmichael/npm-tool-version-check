@@ -6,7 +6,7 @@ const inquirer_1 = tslib_1.__importDefault(require("inquirer"));
 const wait_1 = tslib_1.__importDefault(require("./wait"));
 const localVersionIsOk_1 = tslib_1.__importDefault(require("./localVersionIsOk"));
 const getRemoteVersion_1 = tslib_1.__importDefault(require("./getRemoteVersion"));
-exports.default = (thisVersion, jsonUrl) => {
+exports.default = (thisVersion, jsonUrl, packageName) => {
     return new Promise(async (resolve, reject) => {
         let remoteVersion;
         try {
@@ -14,6 +14,7 @@ exports.default = (thisVersion, jsonUrl) => {
         }
         catch (e) {
             console.log('Could not check the remote version: ' + e.message);
+            console.log(' ');
             return resolve();
         }
         if (localVersionIsOk_1.default(thisVersion, remoteVersion)) {
@@ -21,7 +22,7 @@ exports.default = (thisVersion, jsonUrl) => {
             console.log(smiley + 'This local version looks fresh and shiny, nice!'.green);
             return resolve();
         }
-        const error = 'WARNING: The version you are running, ' + thisVersion.bold + ', is' + ' OUTDATED!'.bold;
+        const error = `WARNING: The version of ${packageName} you are running, ` + thisVersion.bold + ', is' + ' OUTDATED!'.bold;
         console.log(error.red);
         console.log('There is a better version: '.red + remoteVersion.green.bold);
         const questions = [{
@@ -41,7 +42,7 @@ exports.default = (thisVersion, jsonUrl) => {
         }
         else {
             const smiley = '    (^‿^)    '.green.bold;
-            console.log(smiley + 'Great choice! Update generate-it and be happy.'.green);
+            console.log(smiley + 'Great choice! Update the package and be happy.'.green);
             reject();
         }
     });

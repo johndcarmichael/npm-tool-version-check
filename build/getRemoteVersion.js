@@ -7,7 +7,7 @@ const https_1 = tslib_1.__importDefault(require("https"));
  * @param jsonUrl - eg: 'https://raw.githubusercontent.com/johndcarmichael/npm-tool-version-check/master/package.json'
  */
 exports.default = (thisVersion, jsonUrl) => {
-    console.log('Checking version from: ' + jsonUrl);
+    console.log('Checking version with npm-tool-version-check from: ' + jsonUrl);
     return new Promise((resolve, reject) => {
         https_1.default.get(jsonUrl, (res) => {
             let a = '';

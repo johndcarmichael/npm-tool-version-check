@@ -4,13 +4,14 @@ import wait from '@/wait';
 import localVersionIsOk from '@/localVersionIsOk';
 import getRemoteVersion from '@/getRemoteVersion';
 
-export default (thisVersion: string, jsonUrl: string): Promise<void> => {
+export default (thisVersion: string, jsonUrl: string, packageName: string): Promise<void> => {
   return new Promise<any>(async (resolve, reject) => {
     let remoteVersion;
     try {
       remoteVersion = await getRemoteVersion(thisVersion, jsonUrl);
     } catch (e) {
       console.log('Could not check the remote version: ' + e.message);
+      console.log(' ');
       return resolve();
     }
     if (localVersionIsOk(thisVersion, remoteVersion)) {
@@ -19,7 +20,7 @@ export default (thisVersion: string, jsonUrl: string): Promise<void> => {
       return resolve();
     }
 
-    const error = 'WARNING: The version you are running, ' + thisVersion.bold + ', is' + ' OUTDATED!'.bold;
+    const error = `WARNING: The version of ${packageName} you are running, ` + thisVersion.bold + ', is' + ' OUTDATED!'.bold;
     console.log(error.red);
     console.log('There is a better version: '.red + remoteVersion.green.bold);
     const questions = [{
@@ -38,7 +39,7 @@ export default (thisVersion: string, jsonUrl: string): Promise<void> => {
       resolve();
     } else {
       const smiley = '    (^‿^)    '.green.bold;
-      console.log(smiley + 'Great choice! Update generate-it and be happy.'.green);
+      console.log(smiley + 'Great choice! Update the package and be happy.'.green);
       reject();
     }
   });
