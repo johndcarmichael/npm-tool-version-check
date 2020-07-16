@@ -2,6 +2,8 @@
 
 Publish a tool, but want to warn users when you publish a new version.
 
+By default, the tool will require using interaction on the commandline to continue using outdated software
+
 Within your tool:
 
 ```typescript
@@ -16,3 +18,5 @@ versionCheck(thisVersion, remoteJson, packageName)
   // log additional messaging
 })
 ```
+
+To bypass user interaction and only display the warning to the console, set the process env: `npm_tool_version_check__quite` to truthy.
