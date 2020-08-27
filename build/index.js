@@ -25,8 +25,8 @@ exports.default = (thisVersion, jsonUrl, packageName) => {
         const error = `WARNING: The version of ${packageName} you are running, ` + thisVersion.bold + ', is' + ' OUTDATED!'.bold;
         console.log(error.red);
         console.log('THERE IS A BETTER VERSION: '.red + remoteVersion.green.bold);
-        if (process.env.npm_tool_version_check__quite) {
-            console.log('npm_tool_version_check__quite is set: bypassing user interaction'.red.bold);
+        if (process.env.npm_tool_version_check__quiet) {
+            console.log('npm_tool_version_check__quiet is set: bypassing user interaction'.red.bold);
             return resolve();
         }
         const questions = [{

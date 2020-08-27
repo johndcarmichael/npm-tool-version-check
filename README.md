@@ -19,4 +19,6 @@ versionCheck(thisVersion, remoteJson, packageName)
 })
 ```
 
-To bypass user interaction and only display the warning to the console, set the process env: `npm_tool_version_check__quite` to truthy.
+## Bypass
+To bypass user interaction and only display the warning to the console:
+ - set the process env: `npm_tool_version_check__quiet` to truthy

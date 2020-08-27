@@ -24,8 +24,8 @@ export default (thisVersion: string, jsonUrl: string, packageName: string): Prom
     console.log(error.red);
     console.log('THERE IS A BETTER VERSION: '.red + remoteVersion.green.bold);
 
-    if (process.env.npm_tool_version_check__quite) {
-      console.log('npm_tool_version_check__quite is set: bypassing user interaction'.red.bold);
+    if (process.env.npm_tool_version_check__quiet) {
+      console.log('npm_tool_version_check__quiet is set: bypassing user interaction'.red.bold);
       return resolve();
     }
 
