@@ -5,7 +5,7 @@ import localVersionIsOk from '@/localVersionIsOk';
 import getRemoteVersion from '@/getRemoteVersion';
 
 export default (thisVersion: string, jsonUrl: string, packageName: string): Promise<void> => {
-  return new Promise<any>(async (resolve, reject) => {
+  return new Promise<void>(async (resolve, reject) => {
     let remoteVersion;
     try {
       remoteVersion = await getRemoteVersion(thisVersion, jsonUrl);
